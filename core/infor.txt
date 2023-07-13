@@ -1,0 +1,19 @@
+function to remove  items from the cart( decrementing)
+The remove_from_cart function starts off by getting the Item object corresponding to the given slug parameter, just like the add_to_cart function. It then checks if the user has an active order by filtering the Order model based on the user and the ordered field being False. If such an order exists, the function proceeds to check if the given item is already in the cart. If the item is in the cart, the function fetches the corresponding OrderItem object and decrements its quantity by 1. If the quantity becomes 0, the OrderItem object is removed from the cart. Finally, the function redirects the user to the order summary page.
+
+If the user does not have an active order or the given item is not in the cart, appropriate error messages are flashed and the user is redirected to the product details page.
+
+Note that you may need to import the messages module from Django's contrib package and define a corresponding URL pattern for the remove_from_cart view in your urls.py file.
+
+
+adding items to the cart function
+
+The add_to_cart function starts by getting the Item object corresponding to the given slug parameter using the get_object_or_404 shortcut function. It then uses the get_or_create method of the OrderItem model to either retrieve an existing OrderItem object for the given item and user, or create a new one if none exists.
+
+The function then filters the Order model based on the user and ordered fields to check if the user has an active order. If such an order exists, the function checks if the given item is already in the cart by filtering the items field of the order based on the item's slug. If the item is already in the cart, the function increments the quantity of the corresponding OrderItem object and saves it. If the item is not yet in the cart, the OrderItem object is added to the items field of the order.
+
+If the user does not have an active order, the function creates a new Order object with the current user and the current date as its ordered_date field. The OrderItem object is then added to the items field of the order.
+
+Finally, the function flashes a success message indicating that the item was added to the cart, and redirects the user to the order summary page.
+
+Note that you may need to import the messages module from Django's contrib package and define a corresponding URL pattern for the add_to_cart view in your urls.py file.

@@ -1,0 +1,42 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="11">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="h4" />
+            <item index="7" class="java.lang.String" itemvalue="marquee" />
+            <item index="8" class="java.lang.String" itemvalue="legend" />
+            <item index="9" class="java.lang.String" itemvalue="hr" />
+            <item index="10" class="java.lang.String" itemvalue="span" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="BarbieSalon.dashboard.models.Product.objects" />
+          <option value="BarbieSalon.dashboard.models.Order.objects" />
+          <option value="BarbieSalon.dashboard.models.Subscribers.objects" />
+          <option value="BarbieSalon.dashboard.models.Navbar.*" />
+          <option value="BarbieSalon.dashboard.models.HomeDetails.objects" />
+          <option value="BarbieSalon.dashboard.models.AboutUs.objects" />
+          <option value="BarbieSalon.dashboard.models.Brands.objects" />
+          <option value="BarbieSalon.dashboard.models.WorkingHoursTable.objects" />
+          <option value="BarbieSalon.dashboard.models.ReviewsSubtitle.objects" />
+          <option value="BarbieSalon.dashboard.models.SpecialOfferTable.objects" />
+          <option value="BarbieSalon.dashboard.models.Menu.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

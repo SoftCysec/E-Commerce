@@ -1,0 +1,252 @@
+{% extends "partial/base.html" %}
+
+{% load static %}
+
+{% block content %}
+ <!-- Breadcrumb Start -->
+ <div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">Home</a>
+                <a class="breadcrumb-item text-dark" href="#">Shop</a>
+                <span class="breadcrumb-item active">Checkout</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+
+<!-- Checkout Start -->
+<div class="container-fluid">
+    <form method="POST" class="card-body">
+    {% csrf_token %}
+        <div class="row px-xl-5">
+            <div class="col-lg-8">
+
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Shipping Address</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    
+                        <div class="row">
+                            
+                            <div class="col-md-6 form-group">
+                                <label for="first_name">First Name</label>
+                                <input name="first_name" id="first_name" class="form-control" type="text" placeholder="Jones">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="last_name">Last Name</label>
+                                <input name="last_name" id="last_name" class="form-control" type="text" placeholder="Alukwe">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="email">E-mail</label>
+                                <input name="email" id="email" class="form-control" type="text" placeholder="example@email.com">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="mobile_number">Mobile No</label>
+                                <input name="mobile_number" id="mobile_number" class="form-control" type="text" placeholder="+123 456 789">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="shipping_street_address">Street Address</label>
+                                <input name="shipping_street_address" id="shipping_street_address" class="form-control" type="text" placeholder="123 Street">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="shipping_apartment_address">Apartment Address</label>
+                                <input name="shipping_apartment_address" id="shipping_apartment_address" class="form-control" type="text" placeholder="123 Street">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="shipping_country">Country</label>
+                                    {{form.shipping_country}}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="shipping_city">City</label>
+                                <input name="shipping_city" id="shipping_city" class="form-control" type="text" placeholder="New York">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="shipping_state">State</label>
+                                <input name="shipping_state" id="shipping_state" class="form-control" type="text" placeholder="New York">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="shipping_zip_code">ZIP Code</label>
+                                <input name="shipping_zip_code" id="shipping_zip_code" class="form-control" type="text" placeholder="123">
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input {% if form.same_billing_address.value %} checked {% endif %} type="checkbox" class="custom-control-input" name=" same_billing_address" id=" same_billing_address">
+                                    <label class="custom-control-label" for=" same_billing_address">Billing address is the as my shipping address</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input {% if form.set_default_shipping.value %} checked {% endif %} type="checkbox" class="custom-control-input" name="set_default_shipping" id="set_default_shipping">
+                                    <label class="custom-control-label" for="set_default_shipping">Save as default shipping address</label>
+                                </div>
+                            </div>
+
+                            {% if default_shipping_address %}
+                            <div class="col-md-12 form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input  {% if form.use_default_shipping.value %} checked {% endif %} type="checkbox" class="custom-control-input" name="use_default_shipping" id="use_default_shipping">
+                                    <label class="custom-control-label" for="use_default_shipping">Use default shipping address: {{ default_shipping_address.street_address|truncatechars:10 }}</label>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="col-md-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input {% if form.ship_to_different_address.value %} checked {% endif %} type="checkbox" class="custom-control-input" name="ship_to_different_address" id="shipto">
+                                    <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Billing address</label>
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="collapse mb-5" id="shipping-address">
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
+                    <div class="bg-light p-30">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="first_name">First Name</label>
+                                <input name="first_name" id="first_name" class="form-control" type="text" placeholder="Jones">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="last_name">Last Name</label>
+                                <input name="last_name" id="last_name" class="form-control" type="text" placeholder="Alukwe">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="email">E-mail</label>
+                                <input name="email" id="email" class="form-control" type="text" placeholder="example@email.com">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="mobile_number">Mobile No</label>
+                                <input name="mobile_number" id="mobile_number" class="form-control" type="text" placeholder="+123 456 789">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="billing_street_address">Street Address</label>
+                                <input name="billing_street_address" id="billing_street_address" class="form-control" type="text" placeholder="123 Street">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="billing_apartment_address">Apartment Address</label>
+                                <input name="billing_apartment_address" id="billing_apartment_address" class="form-control" type="text" placeholder="123 Street">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="billing_country">Country</label>
+                                {{form.billing_country}}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="billing_city">City</label>
+                                <input name=" billing_city" id=" billing_city" class="form-control" type="text" placeholder="New York">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="billing_state">State</label>
+                                <input name="billing_state" id="billing_state" class="form-control" type="text" placeholder="New York">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="billing_zip_code">ZIP Code</label>
+                                <input name="billing_zip_code" id="billing_zip_code" class="form-control" type="text" placeholder="New York">
+                            </div>
+
+                            
+
+                            <div class="col-md-12 form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input {% if form.set_default_billing.value %} checked {% endif %}  type="checkbox" class="custom-control-input" name="set_default_billing" id="set_default_billing">
+                                    <label class="custom-control-label" for="set_default_billing">Set as default billing address</label>
+                                </div>
+                            </div>
+
+                            {% if default_billing_address %}
+                            <div class="col-md-12 form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input  {% if form.use_default_billing.value %} checked {% endif %} type="checkbox" class="custom-control-input" name="use_default_billing" id="use_default_billing">
+                                    <label class="custom-control-label" for="use_default_billing">Use default billing address: {{ default_billing_address.street_address|truncatechars:10 }}</label>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order Total</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="border-bottom">
+                        <h6 class="mb-3">Products</h6>
+                        <div class="d-flex justify-content-between">
+                            <p>Product Name 1</p>
+                            <p>$150</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p>Product Name 2</p>
+                            <p>$150</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p>Product Name 3</p>
+                            <p>$150</p>
+                        </div>
+                    </div>
+                    <div class="border-bottom pt-3 pb-2">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6>Total Items</h6>
+                            <h6>{{ object.get_total_items }}</h6>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6>Subtotal</h6>
+                            <h6>$150</h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Shipping</h6>
+                            <h6 class="font-weight-medium">$10</h6>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5>Total</h5>
+                            <h5>$160</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    {% comment %} <form method="POST" class="card-body"> {% endcomment %}
+                        {% csrf_token%}
+                        <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Payment</span></h5>
+                        <div class="bg-light p-30">
+                            
+                                
+                                {% for value, name in form.fields.payment_option.choices %}
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio">
+                                        <input value={{value}} type="radio" class="custom-control-input" name="payment_option" id="{{name}}" required>
+                                        
+                                        <label class="custom-control-label" for="{{name}}">{{name}}</label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                        
+                            
+                            <button type="submit" class="btn btn-block btn-primary font-weight-bold py-3">Place Order</button>
+                        </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Checkout End -->
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/javascript">
+let 
+
+
+</script>
+
+{% endblock extra_scripts %}
