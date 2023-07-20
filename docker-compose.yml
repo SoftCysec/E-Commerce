@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: e-commerce_web
+    volumes:
+      - .:/app
+      - sqlite_data:/app/db.sqlite3  # Mount the SQLite database file
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+
+volumes:
+  sqlite_data: # Create a named volume for SQLite database
+  driver: local
+    
+
